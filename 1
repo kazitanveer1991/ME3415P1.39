@@ -1,0 +1,81 @@
+%*************************************************************
+% ME3413FluidMechanicsP139.m()
+%
+% Author: Kazi Tanveer
+% Date: 2015-10-13
+%*************************************************************
+% Description: A MATLAB script to determine specific weight, density and
+% specific gravity of a sample of pop and compare results to the
+% corresponding values for water at 20 degrees Celsius
+%*************************************************************
+
+%acceleration of gravity in m/s^2
+g = 9.81
+
+%density of water in kg/m^3
+w = 1000
+
+%User to input volume of can in milliliters
+volume_of_can = input('\nEnter Volume of can\n\n ==>');
+
+%User to input mass of can in kg
+mass_of_full_can = input('\nEnter Mass of full can\n\n ==>');
+
+%User to input weight of can in N
+weight_of_empty_can = input('\nEnter Weight of empty of can\n\n ==>');
+
+%Calculation of mass of empty can in kg
+mass_of_empty_can = weight_of_empty_can./g
+
+%Calculation for mass of empty can in kg
+mass_of_pop_only = mass_of_full_can - mass_of_empty_can
+
+%Conversion of volume of pop from millilitres to m^3
+volume_of_pop_in_metre_cubed = volume_of_can.*(10^(-6))
+
+%Calculation for density of pop in kg/m^3
+density_of_pop_only = mass_of_pop_only./volume_of_pop_in_metre_cubed
+
+%Calculation for specific weight of pop in N/m^3
+specific_weight_of_pop = density_of_pop_only.*g
+
+%Calculation for specific gravity of pop 
+specific_gravity_of_pop = density_of_pop_only./w
+
+%From the textbook the density and the specific weight of water at 20
+%degrees celsius from Table B.2 - "Physical Properties of Water (SI Units)"
+%from Appendix B of the textbook
+
+%Density of water at 20 degrees Celsius in kg/m^3 
+density_of_water_at_20degrees = 998.2 
+
+%specific weight of at 20 degrees Celsius in N/m^3
+specific_weight_of_water_at_20degrees = 9789
+
+%Calculation for the specific gravity of water 
+specific_gravity_of_water_at_20degrees = density_of_water_at_20degrees./w
+
+%If statement used to tell user whether the specific gravity of water at 20 degrees Celsius is
+%more or less than specific gravity of pop
+if (specific_gravity_of_water_at_20degrees > specific_gravity_of_pop) 
+    fprintf('The specific gravity of water at 20 degrees which is %i is more than the specific gravity of pop which is %i\n\n',specific_gravity_of_water_at_20degrees,specific_gravity_of_pop)
+else
+    disp('The specific gravity of water at 20 degrees is less than the specific gravity of pop')
+end
+
+%If statement used to tell user whether the density of water at 20 degrees Celsius is
+%more or less than density of pop
+if (w > density_of_pop_only) 
+    fprintf('The density of at 20 degrees which is %i is more than the density of pop which is %i\n\n',w,density_of_pop_only)
+else
+    disp('The density of water at 20 degrees is less than the density of pop')
+end
+
+%If statement used to tell user whether the specific weight of water at 20 degrees Celsius is
+%more or less than specific weight of pop
+if (specific_weight_of_water_at_20degrees > specific_weight_of_pop) 
+    fprintf('The specific weight of water at 20 degrees which is %i is more than the specific weight of pop which is %i\n\n',specific_weight_of_water_at_20degrees,specific_weight_of_pop)
+else
+    disp('The specific weight of water at 20 degrees is less than the specific weight of pop')
+end
+
